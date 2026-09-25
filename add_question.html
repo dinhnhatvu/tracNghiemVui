@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thêm câu hỏi - BaiTapVui</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="text-gray-800 flex flex-col min-h-screen">
+
+    <nav class="bg-slate-800 text-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center gap-6">
+                    <span class="font-bold text-xl tracking-tight text-white">BaiTap<span
+                            class="text-green-400">Vui</span></span>
+                    <div class="hidden md:flex space-x-4 text-sm font-medium">
+                        <a href="index.html" class="hover:text-green-400 transition">Trang chủ</a>
+                        <!-- Link đang active sẽ có màu xanh -->
+                        <a href="add_question.html" class="text-green-400 transition">Thêm câu hỏi</a>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4">
+                    <button
+                        class="bg-green-500 hover:bg-green-600 text-white px-4 py-1.5 rounded text-sm font-medium transition">Đăng
+                        nhập</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full">
+
+        <div class="mb-8">
+            <h1 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">Đóng góp câu hỏi mới</h1>
+            <p class="text-gray-600 mb-4">Để thêm câu hỏi vào hệ thống, vui lòng chuẩn bị dữ liệu theo đúng định dạng
+                JSON bên dưới và gửi lại cho quản trị viên.</p>
+
+            <!-- Khối cảnh báo mới -->
+            <div class="bg-red-50 border-l-4 border-red-500 p-4 rounded-r-md">
+                <p class="font-bold text-red-800 mb-2">Lưu ý quan trọng:</p>
+                <ul class="list-disc ml-5 space-y-1 text-red-700">
+                    <li>Nhớ ghi chú lại môn <strong>NÀO</strong> và chương <strong>MẤY</strong>.</li>
+                    <li>Báo cáo cho quản trị viên nếu phát hiện câu hỏi bị sai.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="bg-slate-50 border border-slate-200 rounded-xl overflow-hidden shadow-sm relative">
+
+            <div class="bg-slate-800 text-white px-4 py-3 flex justify-between items-center">
+                <span class="text-sm font-mono text-gray-300">Định dạng mẫu (questions.json)</span>
+                <!-- Nút copy (tùy chọn, thêm JS để hoạt động nếu cần) -->
+                <button onclick="copyToClipboard()"
+                    class="text-xs bg-slate-700 hover:bg-slate-600 px-3 py-1.5 rounded transition">Copy mã</button>
+            </div>
+
+            <div class="p-4 sm:p-6 overflow-x-auto text-sm">
+                <pre class="font-mono text-gray-800"><code id="json-code">[
+  {
+    "id": 1,
+    "question": "Để gia đình có ảnh hưởng giáo dục đạo đức tốt cho con em mình, gia đình không nên làm điều nào dưới đây?",
+    "options": [
+      "A. Ngăn cấm con em tiếp xúc với ảnh hưởng xấu từ bên ngoài",
+      "B. Xác định rõ mục đích giáo dục cho con cái",
+      "C. Giáo dục con ngay cả khi có mặt hay vắng mặt bố mẹ",
+      "D. Vừa khuyên răn con em vừa nêu tấm gương tốt của bố mẹ"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": 2,
+    "question": "Uy quyền của cha mẹ có tác dụng tốt đến giáo dục đạo đức cho con cái là uy quyền được xây dựng trên cơ sở:",
+    "options": [
+      "A. Tình yêu thương mãnh liệt",
+      "B. Thái độ, hành vi mẫu mực của cha mẹ trong cuộc sống",
+      "C. Thoả mãn mọi nhu cầu của con",
+      "D. Những lời khuyên răn về đạo đức, những câu chuyện kể về người tốt, việc tốt (giáo dục đạo đức)"
+    ],
+    "correctAnswer": 3
+  }
+]</code></pre>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-[#1e293b] text-center pt-8 pb-6 mt-12 border-t border-slate-700">
+        <div class="max-w-4xl mx-auto px-4 flex flex-col items-center">
+            <span class="font-bold text-[28px] tracking-tight text-white block mb-4">
+                BaiTap<span class="text-[#22c55e]">Vui</span>
+            </span>
+            <p class="text-[17px] text-gray-300 font-normal mb-4">
+                &copy; 2026.
+            </p>
+            <div class="w-full max-w-xl h-px bg-slate-600/60 mb-4"></div>
+            <p class="text-[15px] text-gray-400 font-normal">
+                Không để ai bị bỏ lại phía sau
+            </p>
+        </div>
+    </footer>
+
+    <!-- Script nhỏ để chức năng copy hoạt động -->
+    <script>
+        function copyToClipboard() {
+            const code = document.getElementById('json-code').innerText;
+            navigator.clipboard.writeText(code).then(() => {
+                alert('Đã copy mã thành công!');
+            }).catch(err => {
+                console.error('Lỗi khi copy: ', err);
+            });
+        }
+    </script>
+</body>
+
+</html>

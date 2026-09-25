@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thi thử trắc nghiệm - Tâm lý học</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="text-gray-800">
+
+    <nav class="bg-slate-800 text-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center gap-6">
+                    <span class="font-bold text-xl tracking-tight text-white">BaiTap<span
+                            class="text-green-400">Vui</span></span>
+                    <div class="hidden md:flex space-x-4 text-sm font-medium">
+                        <a href="index.html" class="hover:text-green-400 transition">Trang chủ</a>
+                        <a href="add_question.html" class="text-green-400 transition">Thêm câu hỏi</a>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4">
+                    <button
+                        class="bg-green-500 hover:bg-green-600 text-white px-4 py-1.5 rounded text-sm font-medium transition">Đăng
+                        nhập</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col md:flex-row gap-8">
+
+        <!-- Left Column: Quiz Content (70%) -->
+        <div class="w-full md:w-[70%] bg-white rounded-lg shadow-sm border border-gray-200 p-6 sm:p-8">
+            <div class="border-b border-gray-200 pb-6 mb-6">
+                <h1 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">Trắc nghiệm ôn tập môn Giáo dục học -
+                    Chương #1</h1>
+                <div class="flex flex-wrap items-center gap-4 text-sm text-gray-500 font-medium">
+                    <span class="flex items-center gap-1">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                            </path>
+                        </svg> <span id="total-questions-count">0</span> câu hỏi
+                    </span>
+
+                    <!-- THÊM ID timer-display VÀO ĐÂY ĐỂ ĐẾM NGƯỢC -->
+                    <span id="timer-display"
+                        class="flex items-center gap-1 text-red-600 bg-red-50 px-2 py-0.5 rounded font-bold">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg> 35:00
+                    </span>
+
+                    <span class="flex items-center gap-1">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z">
+                            </path>
+                        </svg> Tâm lý học lứa tuổi và tâm lý học sư phạm
+                    </span>
+                </div>
+            </div>
+
+            <div id="questions-container" class="space-y-8">
+                <!-- Các câu hỏi sẽ được chèn vào đây -->
+            </div>
+        </div>
+
+        <!-- Right Column: Sticky Sidebar (30%) -->
+        <div class="w-full md:w-[30%]">
+            <div
+                class="sticky top-24 bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden flex flex-col max-h-[calc(100vh-8rem)]">
+                <div class="bg-slate-800 text-white p-3 flex justify-between items-center">
+                    <span class="font-semibold text-center w-full">Câu hỏi</span>
+                </div>
+
+                <div class="p-4 flex-1 overflow-y-auto">
+                    <div id="sidebar-grid" class="grid grid-cols-5 gap-2 sm:gap-3">
+                        <!-- Các nút số sẽ được chèn vào đây -->
+                    </div>
+                </div>
+
+                <div class="p-4 bg-gray-50 border-t border-gray-200">
+                    <button id="submit-btn" onclick="submitQuiz()"
+                        class="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-2.5 px-4 rounded transition-colors duration-200 shadow-sm">
+                        Nộp bài
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal Kết Quả -->
+    <div id="result-modal"
+        class="fixed inset-0 bg-black/60 z-[100] hidden flex items-center justify-center opacity-0 transition-opacity duration-300">
+        <div class="bg-white rounded-xl shadow-2xl w-full max-w-md mx-4 transform scale-95 transition-transform duration-300"
+            id="modal-content">
+            <div class="p-6 text-center">
+                <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg class="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-900 mb-2">Hoàn thành bài thi!</h3>
+                <p class="text-gray-600 mb-6">Kết quả của bạn là:</p>
+
+                <div class="bg-gray-50 rounded-lg p-4 mb-6 border border-gray-100">
+                    <span class="block text-4xl font-extrabold text-green-500 mb-1" id="score-display">0/0</span>
+                    <span class="text-sm text-gray-500 font-medium">Câu trả lời đúng</span>
+                </div>
+
+                <div class="flex gap-3">
+                    <button onclick="closeModal()"
+                        class="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-800 font-semibold py-2.5 rounded transition">Xem
+                        lại bài</button>
+                    <button onclick="location.reload()"
+                        class="flex-1 bg-green-500 hover:bg-green-600 text-white font-semibold py-2.5 rounded transition">Làm
+                        lại</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let quizData = [];
+        // HÀM XÁO TRỘN MẢNG (Sử dụng thuật toán Fisher-Yates)
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                // Hoán đổi phần tử array[i] và array[j]
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+        const userAnswers = {};
+
+        // BIẾN QUẢN LÝ THỜI GIAN VÀ TRẠNG THÁI
+        let timerInterval;
+        let timeLeft = 35 * 60; // 35 phút (đổi ra giây)
+        let isSubmitted = false;
+
+        async function loadQuestions() {
+            try {
+                const response = await fetch('questions.json');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                quizData = await response.json();
+
+                // --- THÊM DÒNG NÀY ĐỂ TRỘN CÂU HỎI MỖI KHI TẢI TRANG ---
+                shuffleArray(quizData);
+
+                renderQuestions();
+                renderSidebar();
+
+                // Gọi hàm đếm ngược thời gian ngay sau khi tải xong câu hỏi
+                startTimer();
+            } catch (error) {
+                console.error("Không thể tải file câu hỏi:", error);
+                document.getElementById('questions-container').innerHTML =
+                    '<p class="text-red-500">Lỗi: Không thể tải dữ liệu câu hỏi.</p>';
+            }
+        }
+
+        function init() {
+            loadQuestions();
+        }
+
+        // HÀM ĐẾM NGƯỢC THỜI GIAN
+        function startTimer() {
+            const timerDisplay = document.getElementById('timer-display');
+
+            timerInterval = setInterval(() => {
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval); // Dừng bộ đếm
+                    if (!isSubmitted) {
+                        alert("Đã hết thời gian làm bài. Hệ thống sẽ tự động nộp bài!");
+                        submitQuiz(); // Tự động nộp bài
+                    }
+                } else {
+                    timeLeft--;
+                    let minutes = Math.floor(timeLeft / 60);
+                    let seconds = timeLeft % 60;
+
+                    // Cập nhật giao diện đồng hồ (VD: 09:05)
+                    if (timerDisplay) {
+                        timerDisplay.innerHTML = `
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg> 
+                            ${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}
+                        `;
+                    }
+                }
+            }, 1000);
+        }
+
+        function renderQuestions() {
+            const container = document.getElementById('questions-container');
+            let htmlContent = '';
+
+            quizData.forEach((q, index) => {
+                const questionNumber = index + 1;
+                let optionsHtml = '';
+
+                q.options.forEach((opt, optIndex) => {
+                    optionsHtml += `
+                        <label class="flex items-start gap-3 p-2 rounded-lg cursor-pointer hover:bg-gray-50 transition-colors group">
+                            <div class="relative flex items-center pt-0.5">
+                                <input type="radio" name="question_${q.id}" value="${optIndex}" 
+                                       class="w-4 h-4 text-green-600 bg-gray-100 border-gray-300 focus:outline-none focus:ring-0 cursor-pointer mt-0.5"
+                                       onchange="handleAnswerSelection(${q.id}, ${optIndex})">
+                            </div>
+                            <!-- Thêm ID vào thẻ span để dễ dàng đổi màu text sau khi nộp -->
+                            <span id="opt-text-${q.id}-${optIndex}" class="text-gray-700 leading-relaxed group-hover:text-gray-900 transition-colors">
+                                ${opt}
+                            </span>
+                        </label>
+                    `;
+                });
+
+                htmlContent += `
+                    <div id="q-${q.id}" class="scroll-mt-28 p-4 rounded-lg border border-transparent transition-colors" id="box-q-${q.id}">
+                        <h3 class="text-base font-bold text-gray-900 mb-3 leading-relaxed">
+                            Câu ${questionNumber}: <span class="font-normal text-gray-800">${q.questionText || q.question}</span>
+                        </h3>
+                        <div class="space-y-1 pl-2">
+                            ${optionsHtml}
+                        </div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = htmlContent;
+
+            const totalElement = document.getElementById('total-questions-count');
+            if (totalElement) totalElement.textContent = quizData.length;
+        }
+
+        function renderSidebar() {
+            const grid = document.getElementById('sidebar-grid');
+            let htmlContent = '';
+
+            quizData.forEach((q, index) => {
+                const questionNumber = index + 1;
+                htmlContent += `
+                    <button id="nav-btn-${q.id}" 
+                            onclick="scrollToQuestion(${q.id})" 
+                            class="w-full aspect-square rounded border border-gray-300 flex items-center justify-center text-sm font-medium text-gray-600 hover:bg-gray-100 hover:border-gray-400 transition-all focus:outline-none">
+                        ${questionNumber}
+                    </button>
+                `;
+            });
+
+            grid.innerHTML = htmlContent;
+        }
+
+        function handleAnswerSelection(questionId, selectedOptionIndex) {
+            if (isSubmitted) return; // Không cho chọn nếu đã nộp bài
+
+            userAnswers[questionId] = selectedOptionIndex;
+            const navBtn = document.getElementById(`nav-btn-${questionId}`);
+            if (navBtn) {
+                navBtn.classList.remove('border-gray-300', 'text-gray-600', 'hover:bg-gray-100', 'hover:border-gray-400');
+                navBtn.classList.add('bg-green-500', 'text-white', 'border-green-600');
+            }
+        }
+
+        function scrollToQuestion(questionId) {
+            const targetElement = document.getElementById(`q-${questionId}`);
+            if (targetElement) {
+                targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        // HÀM NỘP BÀI VÀ CHẤM ĐIỂM
+        function submitQuiz() {
+            if (isSubmitted) return;
+            isSubmitted = true;
+            clearInterval(timerInterval);
+
+            const btnSubmit = document.getElementById('submit-btn');
+            if (btnSubmit) {
+                btnSubmit.disabled = true;
+                btnSubmit.classList.replace('bg-green-500', 'bg-gray-400');
+                btnSubmit.classList.replace('hover:bg-green-600', 'cursor-not-allowed');
+                btnSubmit.textContent = "Đã nộp bài";
+            }
+
+            let correctCount = 0;
+            const totalQuestions = quizData.length;
+
+            quizData.forEach(q => {
+                // SỬA LỖI Ở ĐÂY: Sử dụng parseInt để ép kiểu giá trị người dùng chọn về số nguyên 
+                // Hệ thống sẽ so sánh đúng: 0 === 0 thay vì "0" === 0 (bị false)
+                const userAnswer = userAnswers[q.id] !== undefined ? parseInt(userAnswers[q.id], 10) : null;
+                const correctAnswer = parseInt(q.correctAnswer, 10); // Đảm bảo đáp án trong JSON cũng là số
+
+                const isCorrect = (userAnswer === correctAnswer);
+
+                if (isCorrect) {
+                    correctCount++;
+                }
+
+                const navBtn = document.getElementById(`nav-btn-${q.id}`);
+                if (navBtn) {
+                    navBtn.className = "w-full aspect-square rounded border flex items-center justify-center text-sm font-medium focus:outline-none transition-all";
+                    if (isCorrect) {
+                        navBtn.classList.add('bg-green-500', 'text-white', 'border-green-600');
+                    } else {
+                        navBtn.classList.add('bg-red-500', 'text-white', 'border-red-600');
+                    }
+                }
+
+                const radios = document.getElementsByName(`question_${q.id}`);
+                radios.forEach(radio => radio.disabled = true);
+
+                q.options.forEach((opt, optIndex) => {
+                    const labelText = document.getElementById(`opt-text-${q.id}-${optIndex}`);
+                    if (!labelText) return;
+
+                    if (optIndex === correctAnswer) {
+                        labelText.classList.add('text-green-600', 'font-bold');
+                        labelText.classList.remove('text-gray-700');
+                        labelText.innerHTML += ` <span class="ml-1 text-lg">✅</span>`;
+                    } else if (optIndex === userAnswer && !isCorrect) {
+                        labelText.classList.add('text-red-500', 'font-semibold', 'line-through');
+                        labelText.classList.remove('text-gray-700');
+                        labelText.innerHTML += ` <span class="ml-1 text-lg">❌</span>`;
+                    }
+                });
+            });
+
+            // TÍNH TOÁN THANG ĐIỂM 10
+            let finalScore = 0;
+            if (totalQuestions > 0) {
+                // Công thức: (Số câu đúng / Tổng số câu) * 10
+                finalScore = (correctCount / totalQuestions) * 10;
+
+                // Làm tròn điểm số đến 1 chữ số thập phân (VD: 8.5)
+                // Nếu điểm tròn (VD: 9.0) thì sẽ giữ nguyên là 9
+                finalScore = Number.isInteger(finalScore) ? finalScore : finalScore.toFixed(1);
+            }
+
+            // Hiển thị điểm số lên Modal (Hiển thị điểm 10 và số câu đúng ở dưới)
+            const scoreDisplay = document.getElementById('score-display');
+            if (scoreDisplay) {
+                scoreDisplay.innerHTML = `${finalScore} <span class="text-xl text-gray-400"></span>`;
+            }
+
+            // Tìm thẻ span bên dưới số điểm để hiển thị số câu đúng/tổng câu
+            const correctTextDisplay = scoreDisplay.nextElementSibling;
+            if (correctTextDisplay) {
+                correctTextDisplay.textContent = `Bạn làm đúng ${correctCount}/${totalQuestions} câu`;
+            }
+
+            openModal();
+        }
+
+        function openModal() {
+            const modal = document.getElementById('result-modal');
+            const content = document.getElementById('modal-content');
+            modal.classList.remove('hidden');
+            void modal.offsetWidth;
+            modal.classList.remove('opacity-0');
+            content.classList.remove('scale-95');
+            content.classList.add('scale-100');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('result-modal');
+            const content = document.getElementById('modal-content');
+            modal.classList.add('opacity-0');
+            content.classList.remove('scale-100');
+            content.classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }, 300);
+        }
+
+        window.onload = init;
+    </script>
+
+    <!-- FOOTER -->
+    <footer class="bg-[#1e293b] text-center pt-8 pb-6 mt-12 border-t border-slate-700">
+        <div class="max-w-4xl mx-auto px-4 flex flex-col items-center">
+
+            <!-- Logo BaiTapTracNghiem -->
+            <!-- Giảm margin bottom từ mb-8 xuống mb-4 -->
+            <span class="font-bold text-[28px] tracking-tight text-white block mb-4">
+                BaiTap<span class="text-[#22c55e]">Vui</span>
+            </span>
+
+            <!-- Dòng chữ Bản quyền -->
+            <!-- Giảm margin bottom từ mb-6 xuống mb-4 -->
+            <p class="text-[17px] text-gray-300 font-normal mb-4">
+                &copy; 2026.
+            </p>
+
+            <!-- Đường kẻ mờ phân cách -->
+            <!-- Thêm thẻ w-[80%] (hoặc max-w-lg) để đường kẻ không kéo dài quá mức ra 2 bên nếu bạn muốn -->
+            <div class="w-full max-w-xl h-px bg-slate-600/60 mb-4"></div>
+
+            <!-- Dòng chú thích bên dưới -->
+            <p class="text-[15px] text-gray-400 font-normal">
+                Không để ai bị bỏ lại phía sau
+            </p>
+
+        </div>
+    </footer>
+
+</body>
+
+</html>

@@ -1,0 +1,112 @@
+[
+  {
+    "id": 1,
+    "question": "Theo quan hệ biện chứng giữa giáo dục và xã hội, khẳng định nào sau đây là đúng nhất?",
+    "options": [
+      "A. Xã hội chỉ là sản phẩm của giáo dục, hoàn toàn không có tác động ngược lại",
+      "B. Giáo dục và xã hội tồn tại độc lập, không ảnh hưởng qua lại lẫn nhau",
+      "C. Xã hội quy định giáo dục, đồng thời giáo dục cũng là động lực thúc đẩy xã hội",
+      "D. Giáo dục quyết định hoàn toàn các điều kiện kinh tế, chính trị của một xã hội"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 2,
+    "question": "Việc giáo dục 'đào tạo mới và bồi dưỡng người lao động, nâng cao năng suất lao động' thể hiện chức năng nào của giáo dục?",
+    "options": [
+      "A. Chức năng văn hóa — xã hội",
+      "B. Chức năng kinh tế — sản xuất",
+      "C. Chức năng chính trị — tư tưởng",
+      "D. Chức năng bảo tồn bản sắc cộng đồng"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 3,
+    "question": "Mặt tiến bộ cần nhấn mạnh của chức năng chính trị — tư tưởng trong giáo dục là gì?",
+    "options": [
+      "A. Nhồi nhét mọi quan điểm của xã hội cho người học",
+      "B. Bắt buộc người học phải tuân theo mọi ý kiến của giáo viên mà không được thắc mắc",
+      "C. Giúp người học có năng lực suy nghĩ độc lập, phản biện và trở thành công dân có trách nhiệm",
+      "D. Chỉ tập trung đào tạo kĩ năng nghề nghiệp, không cần quan tâm đến các chuẩn mực pháp luật"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 4,
+    "question": "Việc đưa các chương trình như 'Trường học tử tế' hay lớp học tiếng Việt cho trẻ em người Việt ở nước ngoài là ví dụ thực tế cho chức năng nào?",
+    "options": [
+      "A. Chức năng kinh tế — sản xuất",
+      "B. Chức năng văn hóa — xã hội",
+      "C. Chức năng chính trị — tư tưởng",
+      "D. Chức năng tái sản xuất sức lao động"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 5,
+    "question": "Theo 'Thuyết tiền định (di truyền)' về sự phát triển cá nhân, yếu tố nào đóng vai trò chủ yếu?",
+    "options": [
+      "A. Hoạt động của cá nhân",
+      "B. Môi trường sống và hoàn cảnh",
+      "C. Bẩm sinh, di truyền",
+      "D. Sự tổ chức của giáo dục"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 6,
+    "question": "Quan điểm khoa học hiện đại đánh giá vai trò của 'Giáo dục' đối với sự phát triển cá nhân như thế nào?",
+    "options": [
+      "A. Là tiền đề vật chất",
+      "B. Là điều kiện khách quan",
+      "C. Giữ vai trò chủ đạo",
+      "D. Là con đường trực tiếp biến khả năng thành hiện thực"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 7,
+    "question": "Theo quan điểm khoa học hiện đại, yếu tố nào đóng vai trò 'biến thành hiện thực' đối với sự phát triển của một con người?",
+    "options": [
+      "A. Di truyền",
+      "B. Môi trường",
+      "C. Giáo dục",
+      "D. Hoạt động cá nhân"
+    ],
+    "correctAnswer": 3
+  },
+  {
+    "id": 8,
+    "question": "Trong tình huống một học sinh học ở trường tốt, thầy cô giỏi nhưng vẫn lười học và kết quả kém, 'mắt xích' nào trong 4 yếu tố phát triển cá nhân đang bị đứt gãy?",
+    "options": [
+      "A. Yếu tố môi trường",
+      "B. Yếu tố di truyền",
+      "C. Yếu tố giáo dục",
+      "D. Yếu tố hoạt động cá nhân"
+    ],
+    "correctAnswer": 3
+  },
+  {
+    "id": 9,
+    "question": "Việc một tỉnh quyết định 'đưa tiếng Anh thành môn bắt buộc từ lớp 1' và 'tăng cường dạy nghề cho học sinh THPT' nổi bật nhất thể hiện chức năng nào nhằm tạo nguồn nhân lực hội nhập?",
+    "options": [
+      "A. Chức năng kinh tế — sản xuất",
+      "B. Chức năng chính trị — tư tưởng",
+      "C. Chức năng bảo tồn văn hóa",
+      "D. Chức năng củng cố pháp luật"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": 10,
+    "question": "Theo các tài liệu trên, 'Thuyết môi trường' có hạn chế lớn nhất là gì khi xem xét sự phát triển cá nhân?",
+    "options": [
+      "A. Bỏ qua hoàn toàn vai trò của di truyền bẩm sinh",
+      "B. Xem nhẹ tính chủ động của cá nhân và vai trò tổ chức của giáo dục",
+      "C. Đánh giá quá cao vai trò của năng khiếu bẩm sinh",
+      "D. Phủ nhận hoàn toàn ảnh hưởng của điều kiện sống"
+    ],
+    "correctAnswer": 1
+  }
+]
